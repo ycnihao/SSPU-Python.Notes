@@ -1,0 +1,135 @@
+% !TEX program = xelatex
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amsmath}
+
+% 页面设置
+\geometry{a4paper, left=25mm, right=15mm, top=20mm, bottom=20mm}
+
+% 设置中文字体（苹果系统）
+\setCJKmainfont{PingFang SC}  % 苹方字体
+\setCJKsansfont{Hiragino Sans GB}  % 冬青黑体
+\setCJKmonofont{STKaiti}  % 华文楷体
+
+% 设置英文字体
+\setmainfont{Helvetica Neue}
+\setsansfont{Helvetica}
+\setmonofont{Menlo}
+
+% 段落格式
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+\linespread{1.3}
+
+% 章节格式
+\titleformat{\section}
+  {\normalfont\Large\bfseries\sffamily}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\sffamily}{\thesubsection}{1em}{}
+
+% 列表格式
+\setlist[itemize]{leftmargin=*, topsep=0pt}
+\setlist[enumerate]{leftmargin=*, topsep=0pt}
+
+% 定义笔记环境
+\newenvironment{note}
+  {\begin{framed}\small\itshape}
+  {\end{framed}}
+
+\newenvironment{important}
+  {\begin{framed}\color{red}\small\bfseries}
+  {\end{framed}}
+
+% 代码环境
+\usepackage{listings}
+\lstset{
+basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray}
+}
+
+\begin{document}
+
+% 标题
+\begin{center}
+    {\Huge\bfseries SSPU 高级程序语言设计笔记}\\[0.5em]
+    {\large 2025年10月11日-2026年1月7日}\\[1em]
+\end{center}
+
+% 目录（可选）
+\tableofcontents
+\newpage
+
+
+% 正文开始
+\section{Python语言概述\textbf{(2025年10月15日)}}
+
+% 这是2025年11月12日的笔记内容。python课程主要学习了以下内容：
+
+% \begin{note}
+%   Python中的函数调用是通过函数名加括号来实现的。例如，调用一个名为 \texttt{my\_function} 的函数可以写成 \texttt{my\_function()}。
+
+% \end{note}
+
+% \subsection{子节标题}
+
+% 子节内容可以包含列表：
+
+% \begin{itemize}
+%   \item 要点一
+%   \item 要点二
+%   \item 要点三
+% \end{itemize}
+
+% 或者编号列表：
+
+% \begin{enumerate}
+%   \item 第一项
+%   \item 第二项
+%   \item 第三项
+% \end{enumerate}
+
+\newpage
+
+\section{基本数据类型\textbf{(2025年10月22日)}}
+
+% 数学公式示例：
+
+% \begin{equation}
+%   E = mc^2
+% \end{equation}
+
+% 或者行内公式：$a^2 + b^2 = c^2$
+
+% \begin{important}
+%   重要信息会用红色边框突出显示。
+% \end{important}
+
+\newpage
+
+\section{程序控制结构\textbf{(2025年10月29日)}}
+
+% \begin{lstlisting}[language=Python, caption=Python代码示例]
+% def hello_world():
+%     print("Hello, World!")
+%     return True
+% \end{lstlisting}
+
+\newpage
+
+\section{组合数据类型\textbf{(2025年11月5日)}}
+
+\newpage
+
+\section{函数与模块\textbf{(2025年11月12日)}}
+
+\newpage
+
+\end{document}
