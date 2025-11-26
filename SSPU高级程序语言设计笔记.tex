@@ -145,6 +145,47 @@ from 模块 import 函数  调用为直接 函数名\\
 输入为函数，输出也为函数
 \subsection{类}
 类相当于函数的集合，不过类是一群带有性质的函数的集合
+\subsubsection{数据成员 2025年11月26日}
+首先可以简要理解类与成员的关系为工厂与产品的关系，类是工厂，成员是产品。\\
+类可以通过某种形式来生成对象，就像工厂通过某种生产规则生产出产品一样。\\
+\newpage
+写一段代码理解一下：
+\begin{lstlisting}[language=Python,caption=类的数据成员示例]
+class Student:
+  school = "SSPU"
+
+  def _init_(self, name, age):
+    self.name = name
+    self.age = age
+  def display_info(self):
+    print(f"姓名:{self.name},年龄:{self.age},学校:{self.school}")
+student1 = Student("张三",20)
+student2 = Student("李四",22)
+student1.display_info()  # 输出：姓名：张三, 年龄：20, 学校：SSPU
+student2.display_info()  # 输出：姓名：李四, 年龄：22, 学校：SSPU
+\end{lstlisting}
+
+\begin{note}
+  注意：类变量是所有实例共享的，而实例变量是每个对象独有的。
+\end{note}
+
+\begin{lstlisting}[language=Python,caption=私有变量示例]
+  class BankAccount:
+    def _init_(self,balance):
+      self._balance = balance 
+    def get_balance(self):
+      return self._balance 
+    def deposit(self,amount):
+      self._balance += amount
+  account=BankAccount(1000)
+  print(account.get_balance()) #正确方式，可以输出1000
+  print(account._balance) #错误方式，私有变量无法访问
+\end{lstlisting}
+在这里，Student就是一个类，school = "SSPU"是全体实例的属性(也就是都是二工大的学生)
+
+这类似于一个模版，然后具体输入张三和李四，就会生成二工大学生张三以及李四的这样的信息。
+
+而这里的私有变量就相当于学生的隐私，比如张三或者李四的银行账户与存款等等
 
 \newpage
 
