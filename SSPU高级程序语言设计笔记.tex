@@ -36,6 +36,10 @@
 \setlist[itemize]{leftmargin=*, topsep=0pt}
 \setlist[enumerate]{leftmargin=*, topsep=0pt}
 
+% 错误日志宏：用于在文档中记录简洁的时间戳错误条目
+% 用法：\errorentry{YYYY-MM-DD hh:mm}{错误描述}
+\newcommand{\errorentry}[2]{\item[\textbf{#1}] #2}
+
 % 定义笔记环境
 \newenvironment{note}
   {\begin{framed}\small\itshape}
@@ -54,6 +58,12 @@ basicstyle=\ttfamily\small,
     numbers=left,
     numberstyle=\tiny\color{gray}
 }
+
+% 列表（代码）显示设置：
+% - keepspaces: 保留空格（用于代码缩进）
+% - showspaces/showstringspaces: 不在输出中显示可见空格符号（例如 ␣）
+% 这样可以既保留缩进又不渲染空格可视标记。
+\lstset{keepspaces=true, showspaces=false, showstringspaces=false}
 
 \begin{document}
 
@@ -154,7 +164,7 @@ from 模块 import 函数  调用为直接 函数名\\
 class Student:
   school = "SSPU"
 
-  def _init_(self, name, age):
+  def __init__(self, name, age):
     self.name = name
     self.age = age
   def display_info(self):
@@ -171,7 +181,7 @@ student2.display_info()  # 输出：姓名：李四, 年龄：22, 学校：SSPU
 
 \begin{lstlisting}[language=Python,caption=私有变量示例]
   class BankAccount:
-    def _init_(self,balance):
+    def __init__(self,balance):
       self._balance = balance 
     def get_balance(self):
       return self._balance 
@@ -188,7 +198,55 @@ student2.display_info()  # 输出：姓名：李四, 年龄：22, 学校：SSPU
 而这里的私有变量就相当于学生的隐私，比如张三或者李四的银行账户与存款等等
 
 \newpage
+\subsection{基类和派生类}
+\begin{lstlisting}[language=Python,caption=基类和派生类示例]
+  class Student:    #创建学生基类
+    def __init__(self,name,number):
+      self.name = name
+      self.number = number
+    
+    def do_homework(self):
+      print("学生完成作业")
+
+  class G_student(Student):     #研究生派生类
+    def __init__(self,name,number,advisor):
+      super().__init__(name,number)
+      self.advisor = advisor
+
+    def do_homework(self):
+      print("研究生作研究")
+    
+  class U_student(Student):   #本科派生类
+    def __init__(self,name,number,teacher):
+      super().__init__(name,number)
+      self.teacher = teacher
+
+    def do_homework(self):
+      print("本科生找工作")
+
+  def homework(student): #多态函数
+    student.do_homework()
+  g_student=G_student("张三","2025001","王教授") #研究生张三，学号2025001，导师王教授
+  u_student=U_student("李四","2025002","李老师") #本科生李四，学号2025002，授课老师李老师
+
+  homework(g_student) #调用多态函数，输出：研究生学生完成作业 （做研究）
+  homework(u_student) #调用多态函数，输出：大学本科生完成作业 （找工作）
 
 
+\end{lstlisting}
+\begin{note}
+多态函数的好处在于老师不需要知道每个阶段的学生具体类型，只需要调用homework函数即可，这样的话
+不同阶段的学生会做它们自己的任务。
+\end{note}
+\newpage
 
+\section{我在学习Python过程中出现的错误\textbf{（2025年12月3日）}}
+\begin{description}
+\errorentry{2025-12-03 12:00}{可见空格符问题：代码块每行前有多余空格，已在导言区添加配置保留缩进但不渲染可见空格。}
+\errorentry{2025-12-03 12:02}{构造函数名写错：把 \_init\_ 写成了 \_\_init\_\_（少一个下划线）。}
+\errorentry{2025-12-03 12:05}{继承语法错误：类继承写法不正确，应为 class G\_student(Student):。}
+\errorentry{2025-12-03 12:06}{中文引号问题：使用了中文引号，应使用标准ASCII双引号。}
+\errorentry{2025-12-03 12:08}{代码块嵌套错误：类定义位置不正确。}
+\errorentry{2025-12-03 12:10}{注释与输出不一致：建议同步注释与实际输出。}
+\end{description}
 \end{document}
